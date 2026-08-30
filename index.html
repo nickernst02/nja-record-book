@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Twenty-one seasons of the NO JABRONES ALLOWED fantasy football league, 2005-2025.">
+<title>The Jabrones Record Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#E6E9E0; --panel:#F2F4EC; --panel2:#DDE1D6;
+  --ink:#161C13; --ink2:#3E4739; --muted:#6E7867;
+  --line:#C6CCBC; --line2:#B2BAA6;
+  --turf:#177E56; --turf-ink:#0E5C3E;
+  --flag:#B93B29;
+  --gold:#9C7000; --gold-bright:#C79408;
+  --shadow:0 1px 0 rgba(22,28,19,.06), 0 10px 26px -20px rgba(22,28,19,.5);
+  --w1:#A2C3B0; --w2:#6AA88C; --w3:#0E6E49;
+  --l1:#D2AFA2; --l2:#C88172; --l3:#A83323;
+  --cell-ink:#161C13;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#10150E; --panel:#181F16; --panel2:#212A1E;
+    --ink:#EDF0E6; --ink2:#C3CBBA; --muted:#8A9481;
+    --line:#2C3628; --line2:#3C4836;
+    --turf:#189062; --turf-ink:#5FD3A4;
+    --flag:#D9563F;
+    --gold:#E0A61A; --gold-bright:#F0BC3E;
+    --shadow:0 1px 0 rgba(0,0,0,.4), 0 14px 30px -22px #000;
+    --w1:#1E4932; --w2:#1C6545; --w3:#19845A;
+    --l1:#583728; --l2:#8C4431; --l3:#C3513B;
+    --cell-ink:#EDF0E6;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#10150E; --panel:#181F16; --panel2:#212A1E;
+  --ink:#EDF0E6; --ink2:#C3CBBA; --muted:#8A9481;
+  --line:#2C3628; --line2:#3C4836;
+  --turf:#189062; --turf-ink:#5FD3A4;
+  --flag:#D9563F;
+  --gold:#E0A61A; --gold-bright:#F0BC3E;
+  --shadow:0 1px 0 rgba(0,0,0,.4), 0 14px 30px -22px #000;
+  --w1:#1E4932; --w2:#1C6545; --w3:#19845A;
+  --l1:#583728; --l2:#8C4431; --l3:#C3513B;
+  --cell-ink:#EDF0E6;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+h1,h2,h3{text-wrap:balance;margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+em{font-style:italic}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative; overflow:hidden; border-bottom:3px solid var(--line2);
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), var(--line) calc(10% - 1px), var(--line) 10%),
+    linear-gradient(180deg, var(--panel2), var(--panel));
+  padding:74px 0 40px;
+}
+.hero .wrap{position:relative}
+.eyebrow{
+  font-family:Oswald,"IBM Plex Sans",sans-serif; text-transform:uppercase;
+  letter-spacing:.22em; font-size:12px; color:var(--muted); display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block}
+h1{
+  font-family:"Alfa Slab One",Georgia,serif; font-weight:400; line-height:.92;
+  font-size:clamp(40px,8.2vw,86px); margin:16px 0 6px; letter-spacing:-.01em;
+}
+h1 .thin{display:block;color:var(--turf)}
+.sub{font-size:clamp(16px,2.2vw,20px); color:var(--ink2); max-width:60ch; margin:14px 0 0}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.hs{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:16px 14px;box-shadow:var(--shadow)}
+.hs b{display:block;font-family:"Alfa Slab One",Georgia,serif;font-size:clamp(22px,3.4vw,34px);line-height:1;color:var(--ink)}
+.hs span{display:block;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--muted);margin-top:8px}
+
+/* ---------- sections ---------- */
+section{padding:56px 0; border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{
+  font-family:"Alfa Slab One",Georgia,serif;font-weight:400;
+  font-size:clamp(26px,4vw,40px); line-height:1.06; margin:12px 0 8px;
+}
+.lede{color:var(--ink2);max-width:66ch;margin:0 0 26px}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:16px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--turf);
+  border-radius:3px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);
+}
+.card-top{display:flex;gap:12px;align-items:flex-start}
+.jersey{
+  font-family:"Alfa Slab One",Georgia,serif;font-size:30px;line-height:1;color:var(--line2);
+  font-variant-numeric:tabular-nums;flex:none;padding-top:2px
+}
+.card-id h3{font-family:Oswald,sans-serif;font-size:19px;font-weight:600;line-height:1.15;letter-spacing:.01em}
+.mgr{margin:2px 0 0;font-size:13px;color:var(--turf-ink);font-weight:600}
+.statline{display:grid;grid-template-columns:1.5fr .85fr .95fr .9fr;gap:4px;border-block:1px solid var(--line);padding:10px 0}
+.stat{display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .k{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:9.5px;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.stat .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:13.5px;font-weight:600;white-space:nowrap}
+.scout{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink2);flex:1}
+.card-foot{display:flex;flex-wrap:wrap;gap:4px 14px;border-top:1px solid var(--line);padding-top:10px;
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* ---------- bars ---------- */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:22px;box-shadow:var(--shadow)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.bar-row{display:grid;grid-template-columns:74px 1fr 42px 56px;gap:10px;align-items:center;padding:5px 0}
+.tr-row{display:grid;grid-template-columns:74px 1fr auto;gap:10px;align-items:center;padding:5px 0}
+.bar-name,.tr-name{font-family:Oswald,sans-serif;font-size:12.5px;text-align:right;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{position:relative;height:19px;border-left:1px solid var(--line2);display:flex;align-items:center}
+.bar-fill{height:19px;background:var(--turf);border-radius:0 3px 3px 0;min-width:3px}
+.bar-val{font-family:"IBM Plex Mono",monospace;font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink);text-align:right}
+.tr-track{position:relative;height:17px;background:color-mix(in srgb,var(--panel2) 60%,var(--panel));border-radius:2px}
+.tr-zero{position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--line2)}
+.tr-fill{position:absolute;top:0;height:17px}
+.tr-fill.pos{background:var(--turf);border-radius:0 3px 3px 0}
+.tr-fill.neg{background:var(--flag);border-radius:3px 0 0 3px}
+.tr-val{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-variant-numeric:tabular-nums;width:46px;text-align:right}
+.tr-val.pos{color:var(--turf-ink)} .tr-val.neg{color:var(--flag)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-family:Oswald,sans-serif;text-transform:uppercase;font-size:10.5px;letter-spacing:.12em;color:var(--muted);margin-top:16px}
+.legend i{width:11px;height:11px;display:inline-block;margin-right:6px;vertical-align:-1px;border-radius:2px}
+.cap{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--muted);margin:0 0 14px}
+
+/* ---------- matrix ---------- */
+.scroller{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--panel)}
+table.mx{border-collapse:separate;border-spacing:2px;min-width:920px;width:100%;padding:8px}
+table.mx th{font-family:Oswald,sans-serif;font-weight:400;font-size:10.5px;color:var(--ink2);text-transform:uppercase;letter-spacing:.02em}
+table.mx thead th{padding:2px 2px 8px;vertical-align:bottom;white-space:nowrap}
+table.mx th[scope=row]{text-align:right;padding-right:9px;white-space:nowrap;font-size:11.5px}
+table.mx td{position:relative;text-align:center;border-radius:2px;background:var(--panel2);border:1px solid transparent}
+table.mx td .cell{display:block;padding:8px 4px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-variant-numeric:tabular-nums;color:var(--ink)}
+table.mx td.self{background:var(--panel);border:1px solid var(--line);
+  background-image:repeating-linear-gradient(45deg,transparent 0 5px,var(--line2) 5px 6px)}
+table.mx td.w1{background:var(--w1)} table.mx td.w2{background:var(--w2)} table.mx td.w3{background:var(--w3)}
+table.mx td.l1{background:var(--l1)} table.mx td.l2{background:var(--l2)} table.mx td.l3{background:var(--l3)}
+table.mx td.w1 .cell,table.mx td.w2 .cell,table.mx td.l1 .cell,table.mx td.l2 .cell{color:var(--cell-ink)}
+table.mx td.w3 .cell,table.mx td.l3 .cell{color:#fff;font-weight:600}
+.tip{
+  position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);
+  background:var(--ink);color:var(--ground);padding:6px 10px;border-radius:3px;font-size:12px;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;z-index:5;font-family:"IBM Plex Sans",sans-serif;
+}
+table.mx td:hover .tip,table.mx td:focus-within .tip{opacity:1}
+
+
+/* ---------- trophies ---------- */
+.tr-icon{width:17px;height:17px;color:var(--gold);flex:none;filter:drop-shadow(0 1px 0 rgba(0,0,0,.15))}
+.rings{display:flex;align-items:center;gap:5px;min-height:20px;flex-wrap:wrap}
+.ringlabel{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:.11em;color:var(--gold);font-weight:600;margin-left:3px}
+.ringlabel.dim{color:var(--muted);font-weight:400}
+.bar-pips{display:flex;gap:2px;width:74px}
+.bar-pips .tr-icon{width:14px;height:14px}
+
+/* ---------- jabrone board ---------- */
+.jb{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:14px 22px;box-shadow:var(--shadow);--wmax:70%}
+.jb-row{display:grid;grid-template-columns:92px 146px 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dotted var(--line)}
+.jb-row:last-child{border-bottom:0}
+.jb-name{font-family:Oswald,sans-serif;font-size:20px;font-weight:600;color:var(--ink);text-align:left}
+.jb-tro{display:flex;gap:3px;justify-content:flex-start;align-items:center;flex:none}
+.jb-tro .tr-icon{width:34px;height:34px}
+.jb-count{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;color:var(--ink);white-space:nowrap;flex:none}
+.jb-count.zero{color:var(--muted)}
+.jb-since{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--muted);white-space:nowrap;flex:none}
+.jb-tag{flex:none}
+.jb-tro.none{opacity:1}
+.cutlink{color:var(--turf-ink)}
+.jb-star{color:var(--flag);font-weight:700;font-size:.72em;vertical-align:super;line-height:0;margin-left:1px}
+.jb-foot{font-size:13px;color:var(--muted);max-width:66ch;margin:10px 0 0}
+.lore{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.lore-item{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--turf);border-radius:3px;padding:18px 20px;box-shadow:var(--shadow)}
+.lore-hero{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:3px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:22px}
+.lore-hero-num{text-align:center}
+.lore-hero-big{display:block;font-family:"Alfa Slab One",Georgia,serif;font-size:clamp(38px,6vw,58px);line-height:1;color:var(--gold)}
+.lore-hero-sub{display:block;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--muted);margin-top:8px}
+.lore-hero-body h3{font-family:Oswald,sans-serif;font-size:20px;font-weight:600;letter-spacing:.01em}
+.lore-hero-body p{margin:6px 0 0;font-size:14.5px;line-height:1.55;color:var(--ink2)}
+
+.lore-item p{margin:4px 0 0;font-size:13.5px;line-height:1.5;color:var(--ink2)}
+.lore-k{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--turf-ink)}
+.subnote{font-size:13.5px;color:var(--ink2);max-width:78ch;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.notro{color:var(--muted);font-size:12px;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+.jb-track{position:relative;height:26px;border-left:1px solid var(--line2);display:flex;align-items:center;gap:9px;min-width:0}
+.jb-fill{height:26px;border-radius:0 2px 2px 0;min-width:2px;flex:none;width:calc(var(--w) * var(--wmax))}
+.jb-fill.ok{background:var(--turf)} .jb-fill.bub{background:var(--gold)} .jb-fill.jab{background:var(--flag)}
+.jb-yrs{font-family:"IBM Plex Mono",monospace;font-size:16px;font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap;flex:none}
+.jb-tag{display:flex;justify-content:flex-start;align-items:center}
+.tag{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:13.5px;letter-spacing:.08em;padding:5px 9px;border-radius:2px;white-space:nowrap;text-align:center}
+.tag.jabrone{color:#fff;background:var(--flag);transform:rotate(-2deg);border:1px solid var(--flag);font-weight:600}
+.tag.bubble,.tag.rust{color:var(--gold);border:1px dashed var(--gold)}
+.tag.rookie{color:var(--muted);border:1px solid var(--line2)}
+
+/* ---------- seed histogram ---------- */
+.seedwrap{display:grid;grid-template-columns:minmax(180px,0.85fr) 1.9fr;gap:22px;align-items:center}
+.seeds{display:flex;gap:5px;align-items:flex-end;height:168px;margin:2px 0 0;border-bottom:1px solid var(--line2)}
+.sd{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.sd-col{width:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-height:24px}
+.sd-n{font-family:"Alfa Slab One",Georgia,serif;font-size:13px;color:var(--ink);line-height:1;padding-bottom:3px}
+.sd-n.zero{color:var(--muted)}
+.sd-fill{width:100%;flex:1;background:var(--gold);border-radius:2px 2px 0 0;min-height:2px}
+.sd-fill.zero{background:var(--line2);min-height:2px;flex:none;height:2px}
+.sd-lab{font-family:Oswald,sans-serif;font-size:11px;color:var(--muted);padding-top:5px}
+.sd-axis{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:10px;color:var(--muted);text-align:center;margin:4px 0 0}
+.seednote{font-size:13.5px;color:var(--ink2)}
+.seednote p{margin:0 0 10px}
+.seednote p:last-child{margin-bottom:0}
+@media (max-width:520px){.seedwrap{grid-template-columns:1fr;gap:14px}}
+
+/* ---------- commissioner brackets ---------- */
+.tstrip{display:grid;grid-template-columns:repeat(21,1fr);gap:5px;align-items:end;height:130px;margin:0 0 6px;border-bottom:1px solid var(--line2)}
+.commish{display:grid;grid-template-columns:repeat(21,1fr);gap:5px;margin-bottom:6px}
+.cmlabel{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:9.5px;color:var(--muted);margin:0 0 4px}
+.commish{margin:0 0 4px}
+.cm{border-bottom:2px solid var(--line2);padding-bottom:5px;position:relative;text-align:center}
+.cm::before,.cm::after{content:"";position:absolute;bottom:-6px;width:2px;height:6px;background:var(--line2)}
+.cm::before{left:0} .cm::after{right:0}
+.cm-n{display:block;font-family:Oswald,sans-serif;text-transform:uppercase;font-size:10.5px;letter-spacing:.08em;color:var(--ink2);line-height:1.2}
+.cm-y{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--muted);line-height:1.3}
+.pa-row .bar-fill{background:var(--muted)}
+.lp-row .bar-fill{background:var(--flag)}
+.lp-row .bar-fill.none{background:var(--line2)}
+.lp-row{grid-template-columns:66px 1fr 34px}
+.mv-row .bar-fill{background:var(--turf)}
+.mv-row .bar-fill.quietest{background:var(--gold)}
+.mv-row .bar-fill.busiest{background:var(--flag)}
+.mv-row .bar-fill.rookie{background:var(--line2)}
+.pa-row .bar-fill.worst{background:var(--flag)}
+
+/* ---------- lists ---------- */
+ul.upsets{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+ul.upsets li{display:grid;grid-template-columns:52px 108px 1fr auto;gap:12px;align-items:baseline;
+  padding:11px 12px;background:var(--panel);border:1px solid var(--line);border-radius:3px;font-size:13.5px}
+.ux-yr{font-family:"Alfa Slab One",serif;font-size:16px;color:var(--gold)}
+.ux-rd{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:10.5px;letter-spacing:.1em;color:var(--muted)}
+.ux-body{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-variant-numeric:tabular-nums}
+.ux-gap{font-family:Oswald,sans-serif;font-size:11px;color:var(--flag);white-space:nowrap;text-transform:uppercase;letter-spacing:.08em}
+.dim{color:var(--muted)}
+
+.recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:14px}
+.recs.duo{grid-template-columns:1fr 1fr;gap:10px}
+.recs.duo .rec{padding:14px}
+.recs.duo .big{font-size:28px}
+.rec{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:16px;box-shadow:var(--shadow)}
+.rec .k{font-family:Oswald,sans-serif;text-transform:uppercase;font-size:10.5px;letter-spacing:.14em;color:var(--muted)}
+.rec .big{font-family:"Alfa Slab One",serif;font-size:34px;line-height:1.05;margin:8px 0 4px;font-variant-numeric:tabular-nums}
+.rec .big.wide{font-size:24px;letter-spacing:-.01em}
+.rec .big .dash{color:var(--muted);margin:0 2px}
+.rec p{margin:0;font-size:13px;color:var(--ink2)}
+.rec.flagged{border-left:4px solid var(--flag)}
+.rec.golden{border-left:4px solid var(--gold)}
+
+.callout{
+  background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--flag);
+  border-radius:3px;padding:22px 24px;box-shadow:var(--shadow)
+}
+.callout h3{font-family:"Alfa Slab One",serif;font-size:23px;margin-bottom:8px}
+.callout p{margin:0;color:var(--ink2)}
+.callout .mono{color:var(--ink)}
+
+/* ---------- trades ---------- */
+.ty{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+.ty-bar{width:100%;height:104px;display:flex;flex-direction:column;justify-content:flex-end;border-radius:2px 2px 0 0;overflow:hidden}
+.ty-c{background:var(--turf)} .ty-v{background:var(--flag)}
+.ty-y{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted);padding-top:4px}
+.spark{width:100%;height:74px;display:block}
+
+.nuggets{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
+.nuggets li{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:14px 16px;font-size:13.5px;color:var(--ink2)}
+.nuggets b{color:var(--ink)}
+
+footer{padding:40px 0 64px;color:var(--muted);font-size:12.5px}
+footer a{color:var(--turf-ink)}
+@media (max-width:820px){
+  .lore{grid-template-columns:1fr;gap:16px}
+  .lore-hero{grid-template-columns:1fr;gap:12px;padding:18px 16px}
+  .lore-hero-num{text-align:left}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .two{grid-template-columns:1fr}
+  ul.upsets li{grid-template-columns:44px 1fr;gap:6px}
+  .recs.duo{grid-template-columns:1fr}
+  .jb{padding:14px 10px;--wmax:50%}
+  .jb-row{grid-template-columns:76px minmax(0,1fr);column-gap:8px;padding:7px 0}
+  .jb-name{font-size:15px}
+  .jb-yrs{font-size:12.5px}
+  .jb-since{font-size:11px}
+  .jb-count{font-size:14px}
+  .jb-track{gap:6px}
+  .jb-track,.jb-fill{height:21px}
+  .jb-tro .tr-icon{width:25px;height:25px}
+  .jb-tro{gap:1px}
+  .notro{font-size:9px;letter-spacing:.02em}
+  .tag{font-size:10px;letter-spacing:.01em;padding:3px 5px}
+  .jb-tag{justify-content:flex-start}
+  .seeds{height:150px;gap:6px}
+  .cm-n{font-size:9px;letter-spacing:.02em} .cm-y{font-size:8px}
+  .tstrip{height:112px}
+  .ty-y{font-size:8.5px}
+  .ux-rd{grid-column:2} .ux-body{grid-column:1/-1} .ux-gap{grid-column:1/-1}
+}
+@media (max-width:460px){.jb{--wmax:32%;padding:14px 8px}.jb-row{grid-template-columns:66px 80px minmax(0,1fr);column-gap:5px}.jb-name{font-size:14px}.jb-yrs{font-size:11.5px}.jb-track{gap:5px}.jb-tro .tr-icon{width:14px;height:14px}.notro{font-size:8px}.tag{font-size:8.8px;padding:3px 4px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<style>
+:root{color-scheme:light dark}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+.sitenav{background:var(--panel2);border-bottom:1px solid var(--line);padding:10px 0}
+.sitenav .wrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.sitenav a{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;
+  color:var(--muted);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent}
+.sitenav a:hover{color:var(--ink)}
+.sitenav a.on{color:var(--turf-ink);border-bottom-color:var(--turf)}
+</style>
+</head>
+<body>
+
+
+<nav class="sitenav"><div class="wrap"><a class="on" href="index.html">The record book</a><a href="backup.html">Backup data</a></div></nav>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Est. 2003 &middot; On the record since 2005 &middot; Year 21</p>
+    <h1>No Jabrones<span class="thin">Allowed</span></h1>
+    <p class="sub">Twenty-one seasons. Every game, every score, every playoff collapse, permanently on the record. Most of you have kids now. The spreadsheet does not care.</p>
+    <div class="hero-stats">
+      <div class="hs"><b>21</b><span>Seasons</span></div>
+      <div class="hs"><b>2,119</b><span>Games played</span></div>
+      <div class="hs"><b>440,947</b><span>Points scored</span></div>
+      <div class="hs"><b>103</b><span>Trades attempted</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The current roster</p>
+    <h2>Fourteen men, one group chat</h2>
+    <p class="lede">Everybody currently in the league, ranked by career regular-season win percentage. Records cover 2009-2025, the years Yahoo attaches a manager name to a team.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">01</span>
+          <div class="card-id"><h3>Boorad7</h3><p class="mgr">Chris</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">135-90-1</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.600</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">18-13</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">114.5</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">4 titles</span></div>
+        <p class="scout">The metronome. Four rings, most wins, most roster moves, most trades, and <em>four</em> runner-up finishes on top of all of it.</p>
+        <div class="card-foot"><span>17 seasons</span><span>13 playoff berths</span><span>last won 2021</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">02</span>
+          <div class="card-id"><h3>Terps</h3><p class="mgr">Ross</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">127-99</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.562</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">8-16</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">111.6</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">1 title</span></div>
+        <p class="scout">Won it all in 2009 and has been dining out on it for sixteen years. 8-16 in the playoffs all-time.</p>
+        <div class="card-foot"><span>17 seasons</span><span>11 playoff berths</span><span>last won 2009</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">03</span>
+          <div class="card-id"><h3>Justice Wargrave</h3><p class="mgr">Jeremy</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">126-100</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.558</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">7-16</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">112.3</span></div>
+        </div>
+        <div class="rings"><span class="ringlabel dim">no titles</span></div>
+        <p class="scout"><strong>Four finals, zero rings.</strong> Eleven playoff berths since 2009 and 7-16 once the bracket starts. The league's most decorated bystander.</p>
+        <div class="card-foot"><span>17 seasons</span><span>11 playoff berths</span><span>never won it</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">04</span>
+          <div class="card-id"><h3>Boo&#x27;s Clues</h3><p class="mgr">Kyle</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">103-96-1</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.518</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">7-6</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">109.8</span></div>
+        </div>
+        <div class="rings"><span class="ringlabel dim">no titles</span></div>
+        <p class="scout">Went 11-2 in 2018 and lost the final. Three third-place finishes. Always in the photo, never holding the thing.</p>
+        <div class="card-foot"><span>15 seasons</span><span>5 playoff berths</span><span>never won it</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">05</span>
+          <div class="card-id"><h3>Jin&#x27;s China</h3><p class="mgr">Nick</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">116-110</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.513</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">12-6</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">109.2</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">4 titles</span></div>
+        <p class="scout">Four rings on a .513 record. Peaks in exactly the two months that matter and not one week earlier.</p>
+        <div class="card-foot"><span>17 seasons</span><span>8 playoff berths</span><span>last won 2024</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">06</span>
+          <div class="card-id"><h3>Purple People Eaters</h3><p class="mgr">Matt</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">114-110-2</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.509</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">5-12</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">106.8</span></div>
+        </div>
+        <div class="rings"><span class="ringlabel dim">no titles</span></div>
+        <p class="scout">Eight playoff trips, 5-12 once he gets there, and a 2021 final. Seventeen years, no ring, and the softest schedule in the league to show for it.</p>
+        <div class="card-foot"><span>17 seasons</span><span>8 playoff berths</span><span>never won it</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">07</span>
+          <div class="card-id"><h3>Los 69ers</h3><p class="mgr">Jonathan</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">7-7</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.500</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">2-1</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">111.6</span></div>
+        </div>
+        <div class="rings"><span class="ringlabel dim">no titles</span></div>
+        <p class="scout">One season old. Went 7-7, snuck in as the 7-seed, and ran all the way to the final. Good job, rook.</p>
+        <div class="card-foot"><span>1 seasons</span><span>1 playoff berths</span><span>never won it</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">08</span>
+          <div class="card-id"><h3>The Boss</h3><p class="mgr">Austin</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">112-113-1</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.498</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">6-8</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">108.6</span></div>
+        </div>
+        <div class="rings"><span class="ringlabel dim">no titles</span></div>
+        <p class="scout">Seventeen seasons. <strong>Zero trades.</strong> Not one. Has never once picked up the phone.</p>
+        <div class="card-foot"><span>17 seasons</span><span>6 playoff berths</span><span>never won it</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">09</span>
+          <div class="card-id"><h3>(-.-)Zzz</h3><p class="mgr">Parth</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">110-116</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.487</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">9-7</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">104.2</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">1 title</span></div>
+        <p class="scout">Reigning champ. Backed in at 8-6 as the 5-seed and torched the entire bracket on the way out.</p>
+        <div class="card-foot"><span>17 seasons</span><span>6 playoff berths</span><span>last won 2025</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">10</span>
+          <div class="card-id"><h3>The Sunday Scaries</h3><p class="mgr">Jack</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">107-119</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.473</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">13-7</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">107.0</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">2 titles</span></div>
+        <p class="scout">Two titles out of a .473 record. Pure playoff gremlin. Also three last-place finishes.</p>
+        <div class="card-foot"><span>17 seasons</span><span>8 playoff berths</span><span>last won 2022</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">11</span>
+          <div class="card-id"><h3>DukeBasketball</h3><p class="mgr">Jordan</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">107-119</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.473</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">11-3</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">109.5</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">4 titles</span></div>
+        <p class="scout">11-3 in the playoffs, four titles on six trips. .473 in the regular season. Shows up in December, sleeps until then.</p>
+        <div class="card-foot"><span>17 seasons</span><span>6 playoff berths</span><span>last won 2020</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">12</span>
+          <div class="card-id"><h3>Cutler&#x27;s Armstrength</h3><p class="mgr">Jason</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">102-122-2</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.456</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">6-9</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">107.8</span></div>
+        </div>
+        <div class="rings"><span class="ringlabel dim">no titles</span></div>
+        <p class="scout">Went <strong>14-0</strong> in 2022 and finished fourth. Trades the most, wins the least, suffers the loudest.</p>
+        <div class="card-foot"><span>17 seasons</span><span>7 playoff berths</span><span>never won it</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">13</span>
+          <div class="card-id"><h3>demFARGINGbastards</h3><p class="mgr">Bo</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">99-127</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.438</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">4-4</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">105.5</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">1 title</span></div>
+        <p class="scout">2011 champion. Also 2-16 lifetime against Ross, yikes.</p>
+        <div class="card-foot"><span>17 seasons</span><span>4 playoff berths</span><span>last won 2011</span></div>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <span class="jersey">14</span>
+          <div class="card-id"><h3>Big Bush</h3><p class="mgr">Trevor</p></div>
+        </div>
+        <div class="statline">
+          <div class="stat"><span class="k">Record</span><span class="v">85-115</span></div>
+          <div class="stat"><span class="k">Win %</span><span class="v">.425</span></div>
+          <div class="stat"><span class="k">Playoffs</span><span class="v">3-3</span></div>
+          <div class="stat"><span class="k">Pts/gm</span><span class="v">102.6</span></div>
+        </div>
+        <div class="rings"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><span class="ringlabel">1 title</span></div>
+        <p class="scout">2015 champion and the only man ever to go <strong>0-13</strong>. Peaks and valleys, no plateau.</p>
+        <div class="card-foot"><span>15 seasons</span><span>3 playoff berths</span><span>last won 2015</span></div>
+      </article></div>
+    <p class="subnote"><b>Two more for the road.</b> Sean (100K Salary) played 2013 through 2024 and left before this season. He went <b class="mono">84-75-1</b> in the regular season, a .528 clip that would slot him fourth on this page, and <b class="mono">7-4</b> in the playoffs. Five berths and <b>four finals in five years</b>: the title in <b>2016</b>, then runner-up in 2017, 2019 and 2020. He averaged 110.5 points a game and never once made a trade. Jonathan has his seat now.</p>
+    <p class="subnote" style="padding-top:12px"><b>Rough Riders</b> ran from 2005 to 2012, eight seasons, with Mitch's name attached to the last four. They went <b class="mono">56-44-4</b>, a .558 clip that would tie Jeremy for third on this page, and <b class="mono">4-8</b> in the playoffs across five berths. Their <b>2007</b> is the best season anyone has ever put together here, and the rest of the story is in the lore section below.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The only number that counts</p>
+    <h2>The Jabrone board</h2>
+    <p class="lede"><b>New league bylaw: no championship makes you a JABRONE.</b> No grace period, no credit for showing up, no partial marks for a nice regular season. One trophy per title, ranked from most to fewest. Six of you are down there at the bottom.</p>
+    <div class="jb"><div class="jb-row">
+      <span class="jb-name">Nick</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">4</span>
+        <span class="jb-since">(1 yr ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Chris</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">4</span>
+        <span class="jb-since">(4 yrs ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Jordan</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">4</span>
+        <span class="jb-since">(5 yrs ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Jack</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">2</span>
+        <span class="jb-since">(3 yrs ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Parth</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">1</span>
+        <span class="jb-since">(reigning)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Trevor</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">1</span>
+        <span class="jb-since">(10 yrs ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Bo</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">1</span>
+        <span class="jb-since">(14 yrs ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Ross</span>
+      <div class="jb-track">
+        <span class="jb-tro"><svg class="tr-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10v5a5 5 0 0 1-4 4.9V16h3v2H8v-2h3v-3.1A5 5 0 0 1 7 8V3z"/><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M7 5H4.6v2a3.4 3.4 0 0 0 2.9 3.4M17 5h2.4v2a3.4 3.4 0 0 1-2.9 3.4"/><rect x="6" y="19" width="12" height="2.2" rx="1.1" fill="currentColor"/></svg></span>
+        <span class="jb-count">1</span>
+        <span class="jb-since">(16 yrs ago)</span>
+        
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Austin</span>
+      <div class="jb-track">
+        <span class="jb-tro"></span>
+        <span class="jb-count zero">0</span>
+        
+        <span class="jb-tag"><span class="tag jabrone">Jabrone</span></span>
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Jason</span>
+      <div class="jb-track">
+        <span class="jb-tro"></span>
+        <span class="jb-count zero">0</span>
+        
+        <span class="jb-tag"><span class="tag jabrone">Jabrone</span></span>
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Jeremy</span>
+      <div class="jb-track">
+        <span class="jb-tro"></span>
+        <span class="jb-count zero">0</span>
+        
+        <span class="jb-tag"><span class="tag jabrone">Jabrone</span></span>
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Kyle</span>
+      <div class="jb-track">
+        <span class="jb-tro"></span>
+        <span class="jb-count zero">0</span>
+        
+        <span class="jb-tag"><span class="tag jabrone">Jabrone</span></span>
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Matt</span>
+      <div class="jb-track">
+        <span class="jb-tro"></span>
+        <span class="jb-count zero">0</span>
+        
+        <span class="jb-tag"><span class="tag jabrone">Jabrone</span></span>
+      </div>
+    </div><div class="jb-row">
+      <span class="jb-name">Jonathan<sup class="jb-star">*</sup></span>
+      <div class="jb-track">
+        <span class="jb-tro"></span>
+        <span class="jb-count zero">0</span>
+        
+        <span class="jb-tag"><span class="tag jabrone">Jabrone</span></span>
+      </div>
+    </div></div>
+    <p class="jb-foot">Grey numbers are years since that manager last won. Chris's 2005 and 2008 rings are included; everything else on this page starts in 2009, but a trophy is a trophy.<br><span class="jb-star">*</span> Jonathan joined in 2025, so his nothing is at least a fresh nothing.</p>
+    <p style="font-size:13.5px;color:var(--ink2);max-width:66ch;margin:18px 0 0"><b>Three men are tied at four:</b> Nick, Chris and Jordan, by three completely different routes. Nick peaks in December, Chris has been the best regular-season manager for twenty-one years, and Jordan is .473 lifetime and 11-3 once the bracket starts. <b>Six of the fourteen have nothing:</b> Austin, Jason, Jeremy, Kyle, Matt and Jonathan. The first five have played 83 seasons between them. Jonathan has played one, which the committee has decided is not a defence.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The long view</p>
+    <h2>Who is rising and who is fading</h2>
+    <p class="lede">Regular-season winning percentage over the last five seasons against everything before it. Positive means a manager is better now than he used to be. Jordan and Jason have become different managers. Austin has gone the other way, and it is not close.</p>
+    <div class="panel">
+      <p class="cap">Form: 2021-25 vs 2009-20 &middot; change in win %, percentage points</p>
+      <div class="tr-row"><span class="tr-name">Jordan</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:37.3%"></div></div>
+      <span class="tr-val pos">+12.1</span></div><div class="tr-row"><span class="tr-name">Jason</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:32.5%"></div></div>
+      <span class="tr-val pos">+10.5</span></div><div class="tr-row"><span class="tr-name">Trevor</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:22.0%"></div></div>
+      <span class="tr-val pos">+7.1</span></div><div class="tr-row"><span class="tr-name">Jeremy</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:12.6%"></div></div>
+      <span class="tr-val pos">+4.1</span></div><div class="tr-row"><span class="tr-name">Matt</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:8.8%"></div></div>
+      <span class="tr-val pos">+2.9</span></div><div class="tr-row"><span class="tr-name">Bo</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:8.5%"></div></div>
+      <span class="tr-val pos">+2.8</span></div><div class="tr-row"><span class="tr-name">Jack</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill pos" style="left:50%;width:5.5%"></div></div>
+      <span class="tr-val pos">+1.8</span></div><div class="tr-row"><span class="tr-name">Ross</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill neg" style="right:50%;width:2.2%"></div></div>
+      <span class="tr-val neg">&minus;0.7</span></div><div class="tr-row"><span class="tr-name">Nick</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill neg" style="right:50%;width:12.3%"></div></div>
+      <span class="tr-val neg">&minus;4.0</span></div><div class="tr-row"><span class="tr-name">Chris</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill neg" style="right:50%;width:12.6%"></div></div>
+      <span class="tr-val neg">&minus;4.1</span></div><div class="tr-row"><span class="tr-name">Kyle</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill neg" style="right:50%;width:15.1%"></div></div>
+      <span class="tr-val neg">&minus;4.9</span></div><div class="tr-row"><span class="tr-name">Parth</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill neg" style="right:50%;width:25.9%"></div></div>
+      <span class="tr-val neg">&minus;8.4</span></div><div class="tr-row"><span class="tr-name">Austin</span>
+      <div class="tr-track"><span class="tr-zero"></span><div class="tr-fill neg" style="right:50%;width:50.0%"></div></div>
+      <span class="tr-val neg">&minus;16.2</span></div>
+      <div class="legend"><span><i style="background:var(--turf)"></i>Rising</span><span><i style="background:var(--flag)"></i>Fading</span></div>
+    </div>
+  </section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The grudge matrix</p>
+    <h2>Everybody vs everybody</h2>
+    <p class="lede">All-time head-to-head, regular season and playoffs, 2009-2025. Read across: the row beats the column this often. Hover any cell for the full line. Green means the row owns that matchup; red means they should stop bringing it up.</p>
+    <div class="scroller">
+      <table class="mx">
+        <thead><tr><th></th><th scope="col">Austin</th><th scope="col">Bo</th><th scope="col">Chris</th><th scope="col">Jack</th><th scope="col">Jason</th><th scope="col">Jeremy</th><th scope="col">Jonathan</th><th scope="col">Jordan</th><th scope="col">Kyle</th><th scope="col">Matt</th><th scope="col">Nick</th><th scope="col">Parth</th><th scope="col">Ross</th><th scope="col">Trevor</th></tr></thead>
+        <tbody><tr><th scope="row">Austin</th><td class="self"></td><td class="w1"><span class="cell">11-6</span><span class="tip">Austin is <b>11-6</b> vs Bo &middot; .647</span></td><td class="l1"><span class="cell">8-12</span><span class="tip">Austin is <b>8-12</b> vs Chris &middot; .400</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Austin is <b>10-10</b> vs Jack &middot; .500</span></td><td class="l2"><span class="cell">6-13</span><span class="tip">Austin is <b>6-13</b> vs Jason &middot; .316</span></td><td class="n"><span class="cell">9-10</span><span class="tip">Austin is <b>9-10</b> vs Jeremy &middot; .474</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Austin is <b>0-1</b> vs Jonathan &middot; .000</span></td><td class="w2"><span class="cell">13-6</span><span class="tip">Austin is <b>13-6</b> vs Jordan &middot; .684</span></td><td class="n"><span class="cell">7-8</span><span class="tip">Austin is <b>7-8</b> vs Kyle &middot; .467</span></td><td class="w1"><span class="cell">10-7-1</span><span class="tip">Austin is <b>10-7-1</b> vs Matt &middot; .583</span></td><td class="w2"><span class="cell">12-5</span><span class="tip">Austin is <b>12-5</b> vs Nick &middot; .706</span></td><td class="l2"><span class="cell">5-14</span><span class="tip">Austin is <b>5-14</b> vs Parth &middot; .263</span></td><td class="l1"><span class="cell">8-11</span><span class="tip">Austin is <b>8-11</b> vs Ross &middot; .421</span></td><td class="n"><span class="cell">8-7</span><span class="tip">Austin is <b>8-7</b> vs Trevor &middot; .533</span></td></tr><tr><th scope="row">Bo</th><td class="l1"><span class="cell">6-11</span><span class="tip">Bo is <b>6-11</b> vs Austin &middot; .353</span></td><td class="self"></td><td class="n"><span class="cell">9-11</span><span class="tip">Bo is <b>9-11</b> vs Chris &middot; .450</span></td><td class="w1"><span class="cell">11-8</span><span class="tip">Bo is <b>11-8</b> vs Jack &middot; .579</span></td><td class="w3"><span class="cell">13-4</span><span class="tip">Bo is <b>13-4</b> vs Jason &middot; .765</span></td><td class="l3"><span class="cell">4-14</span><span class="tip">Bo is <b>4-14</b> vs Jeremy &middot; .222</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Bo is <b>1-0</b> vs Jonathan &middot; 1.000</span></td><td class="l1"><span class="cell">6-11</span><span class="tip">Bo is <b>6-11</b> vs Jordan &middot; .353</span></td><td class="w3"><span class="cell">12-3</span><span class="tip">Bo is <b>12-3</b> vs Kyle &middot; .800</span></td><td class="w1"><span class="cell">11-8</span><span class="tip">Bo is <b>11-8</b> vs Matt &middot; .579</span></td><td class="l1"><span class="cell">7-12</span><span class="tip">Bo is <b>7-12</b> vs Nick &middot; .368</span></td><td class="n"><span class="cell">8-9</span><span class="tip">Bo is <b>8-9</b> vs Parth &middot; .471</span></td><td class="l3"><span class="cell">2-16</span><span class="tip">Bo is <b>2-16</b> vs Ross &middot; .111</span></td><td class="l2"><span class="cell">4-11</span><span class="tip">Bo is <b>4-11</b> vs Trevor &middot; .267</span></td></tr><tr><th scope="row">Chris</th><td class="w1"><span class="cell">12-8</span><span class="tip">Chris is <b>12-8</b> vs Austin &middot; .600</span></td><td class="n"><span class="cell">11-9</span><span class="tip">Chris is <b>11-9</b> vs Bo &middot; .550</span></td><td class="self"></td><td class="n"><span class="cell">10-10</span><span class="tip">Chris is <b>10-10</b> vs Jack &middot; .500</span></td><td class="w1"><span class="cell">12-7-1</span><span class="tip">Chris is <b>12-7-1</b> vs Jason &middot; .625</span></td><td class="w1"><span class="cell">14-9</span><span class="tip">Chris is <b>14-9</b> vs Jeremy &middot; .609</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Chris is <b>0-1</b> vs Jonathan &middot; .000</span></td><td class="n"><span class="cell">9-10</span><span class="tip">Chris is <b>9-10</b> vs Jordan &middot; .474</span></td><td class="w1"><span class="cell">11-6</span><span class="tip">Chris is <b>11-6</b> vs Kyle &middot; .647</span></td><td class="w3"><span class="cell">15-5</span><span class="tip">Chris is <b>15-5</b> vs Matt &middot; .750</span></td><td class="n"><span class="cell">11-9</span><span class="tip">Chris is <b>11-9</b> vs Nick &middot; .550</span></td><td class="n"><span class="cell">10-8</span><span class="tip">Chris is <b>10-8</b> vs Parth &middot; .556</span></td><td class="n"><span class="cell">10-9</span><span class="tip">Chris is <b>10-9</b> vs Ross &middot; .526</span></td><td class="n"><span class="cell">9-8</span><span class="tip">Chris is <b>9-8</b> vs Trevor &middot; .529</span></td></tr><tr><th scope="row">Jack</th><td class="n"><span class="cell">10-10</span><span class="tip">Jack is <b>10-10</b> vs Austin &middot; .500</span></td><td class="l1"><span class="cell">8-11</span><span class="tip">Jack is <b>8-11</b> vs Bo &middot; .421</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Jack is <b>10-10</b> vs Chris &middot; .500</span></td><td class="self"></td><td class="n"><span class="cell">10-8</span><span class="tip">Jack is <b>10-8</b> vs Jason &middot; .556</span></td><td class="w3"><span class="cell">15-5</span><span class="tip">Jack is <b>15-5</b> vs Jeremy &middot; .750</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Jack is <b>0-1</b> vs Jonathan &middot; .000</span></td><td class="l2"><span class="cell">5-13</span><span class="tip">Jack is <b>5-13</b> vs Jordan &middot; .278</span></td><td class="n"><span class="cell">8-8</span><span class="tip">Jack is <b>8-8</b> vs Kyle &middot; .500</span></td><td class="l2"><span class="cell">6-12</span><span class="tip">Jack is <b>6-12</b> vs Matt &middot; .333</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Jack is <b>10-10</b> vs Nick &middot; .500</span></td><td class="n"><span class="cell">9-9</span><span class="tip">Jack is <b>9-9</b> vs Parth &middot; .500</span></td><td class="w1"><span class="cell">12-9</span><span class="tip">Jack is <b>12-9</b> vs Ross &middot; .571</span></td><td class="n"><span class="cell">8-9</span><span class="tip">Jack is <b>8-9</b> vs Trevor &middot; .471</span></td></tr><tr><th scope="row">Jason</th><td class="w2"><span class="cell">13-6</span><span class="tip">Jason is <b>13-6</b> vs Austin &middot; .684</span></td><td class="l3"><span class="cell">4-13</span><span class="tip">Jason is <b>4-13</b> vs Bo &middot; .235</span></td><td class="l1"><span class="cell">7-12-1</span><span class="tip">Jason is <b>7-12-1</b> vs Chris &middot; .375</span></td><td class="n"><span class="cell">8-10</span><span class="tip">Jason is <b>8-10</b> vs Jack &middot; .444</span></td><td class="self"></td><td class="l2"><span class="cell">5-14</span><span class="tip">Jason is <b>5-14</b> vs Jeremy &middot; .263</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Jason is <b>0-1</b> vs Jonathan &middot; .000</span></td><td class="l1"><span class="cell">7-11</span><span class="tip">Jason is <b>7-11</b> vs Jordan &middot; .389</span></td><td class="l1"><span class="cell">6-9</span><span class="tip">Jason is <b>6-9</b> vs Kyle &middot; .400</span></td><td class="w1"><span class="cell">10-7</span><span class="tip">Jason is <b>10-7</b> vs Matt &middot; .588</span></td><td class="n"><span class="cell">9-9</span><span class="tip">Jason is <b>9-9</b> vs Nick &middot; .500</span></td><td class="n"><span class="cell">9-10</span><span class="tip">Jason is <b>9-10</b> vs Parth &middot; .474</span></td><td class="l2"><span class="cell">6-14</span><span class="tip">Jason is <b>6-14</b> vs Ross &middot; .300</span></td><td class="w2"><span class="cell">12-6</span><span class="tip">Jason is <b>12-6</b> vs Trevor &middot; .667</span></td></tr><tr><th scope="row">Jeremy</th><td class="n"><span class="cell">10-9</span><span class="tip">Jeremy is <b>10-9</b> vs Austin &middot; .526</span></td><td class="w3"><span class="cell">14-4</span><span class="tip">Jeremy is <b>14-4</b> vs Bo &middot; .778</span></td><td class="l1"><span class="cell">9-14</span><span class="tip">Jeremy is <b>9-14</b> vs Chris &middot; .391</span></td><td class="l3"><span class="cell">5-15</span><span class="tip">Jeremy is <b>5-15</b> vs Jack &middot; .250</span></td><td class="w2"><span class="cell">14-5</span><span class="tip">Jeremy is <b>14-5</b> vs Jason &middot; .737</span></td><td class="self"></td><td class="n"><span class="cell">0-1</span><span class="tip">Jeremy is <b>0-1</b> vs Jonathan &middot; .000</span></td><td class="n"><span class="cell">10-8</span><span class="tip">Jeremy is <b>10-8</b> vs Jordan &middot; .556</span></td><td class="w2"><span class="cell">13-6</span><span class="tip">Jeremy is <b>13-6</b> vs Kyle &middot; .684</span></td><td class="w1"><span class="cell">10-7</span><span class="tip">Jeremy is <b>10-7</b> vs Matt &middot; .588</span></td><td class="l1"><span class="cell">8-11</span><span class="tip">Jeremy is <b>8-11</b> vs Nick &middot; .421</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Jeremy is <b>10-10</b> vs Parth &middot; .500</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Jeremy is <b>10-10</b> vs Ross &middot; .500</span></td><td class="w1"><span class="cell">9-6</span><span class="tip">Jeremy is <b>9-6</b> vs Trevor &middot; .600</span></td></tr><tr><th scope="row">Jonathan</th><td class="n"><span class="cell">1-0</span><span class="tip">Jonathan is <b>1-0</b> vs Austin &middot; 1.000</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Jonathan is <b>0-1</b> vs Bo &middot; .000</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Jonathan is <b>1-0</b> vs Chris &middot; 1.000</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Jonathan is <b>1-0</b> vs Jack &middot; 1.000</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Jonathan is <b>1-0</b> vs Jason &middot; 1.000</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Jonathan is <b>1-0</b> vs Jeremy &middot; 1.000</span></td><td class="self"></td><td class="n"><span class="cell">0-1</span><span class="tip">Jonathan is <b>0-1</b> vs Jordan &middot; .000</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Jonathan is <b>0-1</b> vs Kyle &middot; .000</span></td><td class="n"><span class="cell">0-1</span><span class="tip">Jonathan is <b>0-1</b> vs Matt &middot; .000</span></td><td class="n"><span class="cell">1-1</span><span class="tip">Jonathan is <b>1-1</b> vs Nick &middot; .500</span></td><td class="n"><span class="cell">0-2</span><span class="tip">Jonathan is <b>0-2</b> vs Parth &middot; .000</span></td><td class="n"><span class="cell">2-0</span><span class="tip">Jonathan is <b>2-0</b> vs Ross &middot; 1.000</span></td><td class="n"><span class="cell">1-1</span><span class="tip">Jonathan is <b>1-1</b> vs Trevor &middot; .500</span></td></tr><tr><th scope="row">Jordan</th><td class="l2"><span class="cell">6-13</span><span class="tip">Jordan is <b>6-13</b> vs Austin &middot; .316</span></td><td class="w1"><span class="cell">11-6</span><span class="tip">Jordan is <b>11-6</b> vs Bo &middot; .647</span></td><td class="n"><span class="cell">10-9</span><span class="tip">Jordan is <b>10-9</b> vs Chris &middot; .526</span></td><td class="w2"><span class="cell">13-5</span><span class="tip">Jordan is <b>13-5</b> vs Jack &middot; .722</span></td><td class="w1"><span class="cell">11-7</span><span class="tip">Jordan is <b>11-7</b> vs Jason &middot; .611</span></td><td class="n"><span class="cell">8-10</span><span class="tip">Jordan is <b>8-10</b> vs Jeremy &middot; .444</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Jordan is <b>1-0</b> vs Jonathan &middot; 1.000</span></td><td class="self"></td><td class="l2"><span class="cell">5-11</span><span class="tip">Jordan is <b>5-11</b> vs Kyle &middot; .312</span></td><td class="l1"><span class="cell">9-12</span><span class="tip">Jordan is <b>9-12</b> vs Matt &middot; .429</span></td><td class="n"><span class="cell">9-10</span><span class="tip">Jordan is <b>9-10</b> vs Nick &middot; .474</span></td><td class="w2"><span class="cell">13-6</span><span class="tip">Jordan is <b>13-6</b> vs Parth &middot; .684</span></td><td class="l2"><span class="cell">6-12</span><span class="tip">Jordan is <b>6-12</b> vs Ross &middot; .333</span></td><td class="l1"><span class="cell">6-9</span><span class="tip">Jordan is <b>6-9</b> vs Trevor &middot; .400</span></td></tr><tr><th scope="row">Kyle</th><td class="n"><span class="cell">8-7</span><span class="tip">Kyle is <b>8-7</b> vs Austin &middot; .533</span></td><td class="l3"><span class="cell">3-12</span><span class="tip">Kyle is <b>3-12</b> vs Bo &middot; .200</span></td><td class="l1"><span class="cell">6-11</span><span class="tip">Kyle is <b>6-11</b> vs Chris &middot; .353</span></td><td class="n"><span class="cell">8-8</span><span class="tip">Kyle is <b>8-8</b> vs Jack &middot; .500</span></td><td class="w1"><span class="cell">9-6</span><span class="tip">Kyle is <b>9-6</b> vs Jason &middot; .600</span></td><td class="l2"><span class="cell">6-13</span><span class="tip">Kyle is <b>6-13</b> vs Jeremy &middot; .316</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Kyle is <b>1-0</b> vs Jonathan &middot; 1.000</span></td><td class="w2"><span class="cell">11-5</span><span class="tip">Kyle is <b>11-5</b> vs Jordan &middot; .688</span></td><td class="self"></td><td class="l1"><span class="cell">8-12</span><span class="tip">Kyle is <b>8-12</b> vs Matt &middot; .400</span></td><td class="l1"><span class="cell">7-9</span><span class="tip">Kyle is <b>7-9</b> vs Nick &middot; .438</span></td><td class="w2"><span class="cell">13-5</span><span class="tip">Kyle is <b>13-5</b> vs Parth &middot; .722</span></td><td class="w2"><span class="cell">10-5</span><span class="tip">Kyle is <b>10-5</b> vs Ross &middot; .667</span></td><td class="w3"><span class="cell">11-3</span><span class="tip">Kyle is <b>11-3</b> vs Trevor &middot; .786</span></td></tr><tr><th scope="row">Matt</th><td class="l1"><span class="cell">7-10-1</span><span class="tip">Matt is <b>7-10-1</b> vs Austin &middot; .417</span></td><td class="l1"><span class="cell">8-11</span><span class="tip">Matt is <b>8-11</b> vs Bo &middot; .421</span></td><td class="l3"><span class="cell">5-15</span><span class="tip">Matt is <b>5-15</b> vs Chris &middot; .250</span></td><td class="w2"><span class="cell">12-6</span><span class="tip">Matt is <b>12-6</b> vs Jack &middot; .667</span></td><td class="l1"><span class="cell">7-10</span><span class="tip">Matt is <b>7-10</b> vs Jason &middot; .412</span></td><td class="l1"><span class="cell">7-10</span><span class="tip">Matt is <b>7-10</b> vs Jeremy &middot; .412</span></td><td class="n"><span class="cell">1-0</span><span class="tip">Matt is <b>1-0</b> vs Jonathan &middot; 1.000</span></td><td class="w1"><span class="cell">12-9</span><span class="tip">Matt is <b>12-9</b> vs Jordan &middot; .571</span></td><td class="w1"><span class="cell">12-8</span><span class="tip">Matt is <b>12-8</b> vs Kyle &middot; .600</span></td><td class="self"></td><td class="l1"><span class="cell">8-11</span><span class="tip">Matt is <b>8-11</b> vs Nick &middot; .421</span></td><td class="l1"><span class="cell">7-10</span><span class="tip">Matt is <b>7-10</b> vs Parth &middot; .412</span></td><td class="w2"><span class="cell">13-7</span><span class="tip">Matt is <b>13-7</b> vs Ross &middot; .650</span></td><td class="w2"><span class="cell">11-5</span><span class="tip">Matt is <b>11-5</b> vs Trevor &middot; .688</span></td></tr><tr><th scope="row">Nick</th><td class="l2"><span class="cell">5-12</span><span class="tip">Nick is <b>5-12</b> vs Austin &middot; .294</span></td><td class="w1"><span class="cell">12-7</span><span class="tip">Nick is <b>12-7</b> vs Bo &middot; .632</span></td><td class="n"><span class="cell">9-11</span><span class="tip">Nick is <b>9-11</b> vs Chris &middot; .450</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Nick is <b>10-10</b> vs Jack &middot; .500</span></td><td class="n"><span class="cell">9-9</span><span class="tip">Nick is <b>9-9</b> vs Jason &middot; .500</span></td><td class="w1"><span class="cell">11-8</span><span class="tip">Nick is <b>11-8</b> vs Jeremy &middot; .579</span></td><td class="n"><span class="cell">1-1</span><span class="tip">Nick is <b>1-1</b> vs Jonathan &middot; .500</span></td><td class="n"><span class="cell">10-9</span><span class="tip">Nick is <b>10-9</b> vs Jordan &middot; .526</span></td><td class="w1"><span class="cell">9-7</span><span class="tip">Nick is <b>9-7</b> vs Kyle &middot; .562</span></td><td class="w1"><span class="cell">11-8</span><span class="tip">Nick is <b>11-8</b> vs Matt &middot; .579</span></td><td class="self"></td><td class="w1"><span class="cell">11-6</span><span class="tip">Nick is <b>11-6</b> vs Parth &middot; .647</span></td><td class="l1"><span class="cell">7-12</span><span class="tip">Nick is <b>7-12</b> vs Ross &middot; .368</span></td><td class="w2"><span class="cell">12-5</span><span class="tip">Nick is <b>12-5</b> vs Trevor &middot; .706</span></td></tr><tr><th scope="row">Parth</th><td class="w2"><span class="cell">14-5</span><span class="tip">Parth is <b>14-5</b> vs Austin &middot; .737</span></td><td class="n"><span class="cell">9-8</span><span class="tip">Parth is <b>9-8</b> vs Bo &middot; .529</span></td><td class="n"><span class="cell">8-10</span><span class="tip">Parth is <b>8-10</b> vs Chris &middot; .444</span></td><td class="n"><span class="cell">9-9</span><span class="tip">Parth is <b>9-9</b> vs Jack &middot; .500</span></td><td class="n"><span class="cell">10-9</span><span class="tip">Parth is <b>10-9</b> vs Jason &middot; .526</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Parth is <b>10-10</b> vs Jeremy &middot; .500</span></td><td class="n"><span class="cell">2-0</span><span class="tip">Parth is <b>2-0</b> vs Jonathan &middot; 1.000</span></td><td class="l2"><span class="cell">6-13</span><span class="tip">Parth is <b>6-13</b> vs Jordan &middot; .316</span></td><td class="l2"><span class="cell">5-13</span><span class="tip">Parth is <b>5-13</b> vs Kyle &middot; .278</span></td><td class="w1"><span class="cell">10-7</span><span class="tip">Parth is <b>10-7</b> vs Matt &middot; .588</span></td><td class="l1"><span class="cell">6-11</span><span class="tip">Parth is <b>6-11</b> vs Nick &middot; .353</span></td><td class="self"></td><td class="n"><span class="cell">11-10</span><span class="tip">Parth is <b>11-10</b> vs Ross &middot; .524</span></td><td class="w1"><span class="cell">9-6</span><span class="tip">Parth is <b>9-6</b> vs Trevor &middot; .600</span></td></tr><tr><th scope="row">Ross</th><td class="w1"><span class="cell">11-8</span><span class="tip">Ross is <b>11-8</b> vs Austin &middot; .579</span></td><td class="w3"><span class="cell">16-2</span><span class="tip">Ross is <b>16-2</b> vs Bo &middot; .889</span></td><td class="n"><span class="cell">9-10</span><span class="tip">Ross is <b>9-10</b> vs Chris &middot; .474</span></td><td class="l1"><span class="cell">9-12</span><span class="tip">Ross is <b>9-12</b> vs Jack &middot; .429</span></td><td class="w2"><span class="cell">14-6</span><span class="tip">Ross is <b>14-6</b> vs Jason &middot; .700</span></td><td class="n"><span class="cell">10-10</span><span class="tip">Ross is <b>10-10</b> vs Jeremy &middot; .500</span></td><td class="n"><span class="cell">0-2</span><span class="tip">Ross is <b>0-2</b> vs Jonathan &middot; .000</span></td><td class="w2"><span class="cell">12-6</span><span class="tip">Ross is <b>12-6</b> vs Jordan &middot; .667</span></td><td class="l2"><span class="cell">5-10</span><span class="tip">Ross is <b>5-10</b> vs Kyle &middot; .333</span></td><td class="l2"><span class="cell">7-13</span><span class="tip">Ross is <b>7-13</b> vs Matt &middot; .350</span></td><td class="w1"><span class="cell">12-7</span><span class="tip">Ross is <b>12-7</b> vs Nick &middot; .632</span></td><td class="n"><span class="cell">10-11</span><span class="tip">Ross is <b>10-11</b> vs Parth &middot; .476</span></td><td class="self"></td><td class="n"><span class="cell">7-8</span><span class="tip">Ross is <b>7-8</b> vs Trevor &middot; .467</span></td></tr><tr><th scope="row">Trevor</th><td class="n"><span class="cell">7-8</span><span class="tip">Trevor is <b>7-8</b> vs Austin &middot; .467</span></td><td class="w2"><span class="cell">11-4</span><span class="tip">Trevor is <b>11-4</b> vs Bo &middot; .733</span></td><td class="n"><span class="cell">8-9</span><span class="tip">Trevor is <b>8-9</b> vs Chris &middot; .471</span></td><td class="n"><span class="cell">9-8</span><span class="tip">Trevor is <b>9-8</b> vs Jack &middot; .529</span></td><td class="l2"><span class="cell">6-12</span><span class="tip">Trevor is <b>6-12</b> vs Jason &middot; .333</span></td><td class="l1"><span class="cell">6-9</span><span class="tip">Trevor is <b>6-9</b> vs Jeremy &middot; .400</span></td><td class="n"><span class="cell">1-1</span><span class="tip">Trevor is <b>1-1</b> vs Jonathan &middot; .500</span></td><td class="w1"><span class="cell">9-6</span><span class="tip">Trevor is <b>9-6</b> vs Jordan &middot; .600</span></td><td class="l3"><span class="cell">3-11</span><span class="tip">Trevor is <b>3-11</b> vs Kyle &middot; .214</span></td><td class="l2"><span class="cell">5-11</span><span class="tip">Trevor is <b>5-11</b> vs Matt &middot; .312</span></td><td class="l2"><span class="cell">5-12</span><span class="tip">Trevor is <b>5-12</b> vs Nick &middot; .294</span></td><td class="l1"><span class="cell">6-9</span><span class="tip">Trevor is <b>6-9</b> vs Parth &middot; .400</span></td><td class="n"><span class="cell">8-7</span><span class="tip">Trevor is <b>8-7</b> vs Ross &middot; .533</span></td><td class="self"></td></tr></tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><i style="background:color-mix(in srgb,var(--turf) 70%,var(--panel2))"></i>Dominant</span>
+      <span><i style="background:var(--panel2)"></i>Even</span>
+      <span><i style="background:color-mix(in srgb,var(--flag) 70%,var(--panel2))"></i>Owned</span>
+      <span>Every cell is labelled with the actual record. Colour is a shortcut, not the data.</span>
+    </div>
+    <div class="recs" style="margin-top:18px">
+      <div class="rec flagged"><span class="k">Most one-sided</span><div class="big">16-2</div><p>Ross over Bo. Eighteen meetings, two Bo wins. Bo has a championship ring and still cannot beat this man.</p></div>
+      <div class="rec flagged"><span class="k">Nearly as brutal</span><div class="big">15-5</div><p>Chris over Matt, and Jack over Jeremy by the same margin. Twenty games apiece.</p></div>
+      <div class="rec"><span class="k">Most contested</span><div class="big">23</div><p>Meetings between Chris and Jeremy, the league's most-played rivalry. Chris leads it 14-9.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Bracket chaos</p>
+    <h2>The playoffs are a coin flip with extra steps</h2>
+    <p class="lede">Across 21 postseasons the higher seed wins barely half the time. Quarterfinal favourites have lost <b>24 of 43</b> games. Only six of 21 championships have gone to the top seed. Five have gone to a 5-seed.</p>
+    <div class="panel" style="margin-bottom:20px">
+      <p class="cap">Championships won, by playoff seed &middot; all 21 titles</p>
+      <div class="seedwrap">
+        <div>
+          <div class="seeds"><div class="sd" title="Seed 1: 6 championships">
+  <div class="sd-col" style="height:92.0%">
+    <span class="sd-n">6</span>
+    <div class="sd-fill"></div>
+  </div>
+  <span class="sd-lab">1</span></div><div class="sd" title="Seed 2: 6 championships">
+  <div class="sd-col" style="height:92.0%">
+    <span class="sd-n">6</span>
+    <div class="sd-fill"></div>
+  </div>
+  <span class="sd-lab">2</span></div><div class="sd" title="Seed 3: 0 championships">
+  <div class="sd-col" style="height:0.0%">
+    <span class="sd-n zero">0</span>
+    <div class="sd-fill zero"></div>
+  </div>
+  <span class="sd-lab">3</span></div><div class="sd" title="Seed 4: 2 championships">
+  <div class="sd-col" style="height:30.7%">
+    <span class="sd-n">2</span>
+    <div class="sd-fill"></div>
+  </div>
+  <span class="sd-lab">4</span></div><div class="sd" title="Seed 5: 5 championships">
+  <div class="sd-col" style="height:76.7%">
+    <span class="sd-n">5</span>
+    <div class="sd-fill"></div>
+  </div>
+  <span class="sd-lab">5</span></div><div class="sd" title="Seed 6: 2 championships">
+  <div class="sd-col" style="height:30.7%">
+    <span class="sd-n">2</span>
+    <div class="sd-fill"></div>
+  </div>
+  <span class="sd-lab">6</span></div><div class="sd" title="Seed 7: 0 championships">
+  <div class="sd-col" style="height:0.0%">
+    <span class="sd-n zero">0</span>
+    <div class="sd-fill zero"></div>
+  </div>
+  <span class="sd-lab">7</span></div><div class="sd" title="Seed 8: 0 championships">
+  <div class="sd-col" style="height:0.0%">
+    <span class="sd-n zero">0</span>
+    <div class="sd-fill zero"></div>
+  </div>
+  <span class="sd-lab">8</span></div></div>
+          <p class="sd-axis">Playoff seed</p>
+        </div>
+        <div class="seednote">
+          <p>The 1-seed and the 2-seed have six titles each. The <b>5-seed has five</b>, nearly as many as the top seed, out of a slot nobody wants on selection day.</p>
+          <p>The <b>3-seed has never won this league</b>, not once in 21 tries. Neither has anything below sixth, though Jonathan came within one game of it last season as a 7.</p>
+        </div>
+      </div>
+    </div>
+    <p class="cap" style="margin:24px 0 10px">Significant playoff matches &middot; the five biggest seed upsets</p>
+    <ul class="upsets"><li><span class="ux-yr">2025</span><span class="ux-rd">Quarterfinal</span>
+  <span class="ux-body"><b>#7 Los 69ers</b> <span class="dim">(Jonathan)</span> 146.32
+  - 83.46 <span class="dim">(Trevor)</span> #2 Big Bush</span>
+  <span class="ux-gap">+5 seeds</span></li><li><span class="ux-yr">2022</span><span class="ux-rd">3rd Place Game</span>
+  <span class="ux-body"><b>#6 Terps</b> <span class="dim">(Ross)</span> 109.86
+  - 88.52 <span class="dim">(Jason)</span> #1 Cutler&#x27;s Armstrength</span>
+  <span class="ux-gap">+5 seeds</span></li><li><span class="ux-yr">2018</span><span class="ux-rd">Final</span>
+  <span class="ux-body"><b>#6 DukeBasketball</b> <span class="dim">(Jordan)</span> 107.46
+  - 102.28 <span class="dim">(Kyle)</span> #1 Boo&#x27;s Clues</span>
+  <span class="ux-gap">+5 seeds</span></li><li><span class="ux-yr">2018</span><span class="ux-rd">Semifinal</span>
+  <span class="ux-body"><b>#6 DukeBasketball</b> <span class="dim">(Jordan)</span> 151.48
+  - 96.86 <span class="dim">(Austin)</span> #2 The Boss</span>
+  <span class="ux-gap">+4 seeds</span></li><li><span class="ux-yr">2017</span><span class="ux-rd">Semifinal</span>
+  <span class="ux-body"><b>#5 Boorad7</b> <span class="dim">(Chris)</span> 143.08
+  - 97.02 <span class="dim">(Jeremy)</span> #1 SCHLETZ DO THIS</span>
+  <span class="ux-gap">+4 seeds</span></li></ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The record book</p>
+    <h2>Extremes</h2>
+    <p class="lede">Twenty-one years of high-water marks and things people would rather forget.</p>
+    <div class="recs">
+      <div class="rec golden"><span class="k">Most points, one week</span><div class="big">211.86</div><p><b>Nick</b> (Jin's China), 2023 Week 12. Beat 100K Salary by 97.58. Runner-up: Jeremy's 200.06 in 2025.</p></div>
+      <div class="rec golden"><span class="k">Best season, per game</span><div class="big">140.11</div><p><b>Nick</b>, 2023. Went 11-3, scored 1,961.56 points, and won the title. The most complete season in league history.</p></div>
+      <div class="rec flagged"><span class="k">Biggest blowout</span><div class="big wide">194.92<span class="dash">&ndash;</span>69.66</div><p>Chris over Bo by <b>125.26</b> points in 2017 Week 13. The single most dominant week of league history. The two 140-0 results in the archive were bye weeks, not games, and do not count.</p></div>
+      <div class="rec"><span class="k">Closest game ever</span><div class="big">0.04</div><p>2025 Week 2: Jordan 118.34, Ross 118.30. Twenty-nine games in league history have been decided by under a point.</p></div>
+      <div class="rec"><span class="k">Highest-scoring game</span><div class="big">346.20</div><p>2013, fifth-place game: Austin 179.32, Ross 166.88. Neither man's season was still alive. Four of the top five have come since 2021.</p></div>
+      <div class="rec flagged"><span class="k">Worst season</span><div class="big">0-13</div><p>2010 <b>Big Bush</b> was a sight to behold. 916 total points, roughly 70 a week. Aaaaaand he won the ship five years later.</p></div>
+      <div class="rec"><span class="k">Longest winning streak</span><div class="big">15</div><p><b>Jason</b>, the last week of 2021 through all fourteen of 2022. Streaks carry across seasons here, so his perfect year was really the back half of a longer run. Next best is 12, Kyle and Ross.</p></div>
+      <div class="rec flagged"><span class="k">Longest title drought</span><div class="big">16 yrs</div><p><b>Ross</b> won in 2009 and has not won since. He did reach the 2016 final and lose it. Eleven berths in all, 8-16 in those games.</p></div>
+    </div>
+    <p class="subnote">Scores from 2005 to 2011 are whole numbers. That is how Yahoo stored them, not a rounding error on our end.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Stories we keep telling</p>
+    <h2>NJA lore</h2>
+    <p class="lede">Things that happened in this league that nobody who was there has been allowed to forget.</p>
+
+    <div class="lore-hero">
+      <div class="lore-hero-num"><span class="lore-hero-big">14-0</span><span class="lore-hero-sub">and fourth place</span></div>
+      <div class="lore-hero-body">
+        <h3>Jason, 2022</h3>
+        <p>Perfect regular season. Most points in the league. First overall seed. Then he lost the semifinal <span class="mono">96.66-141.38</span> to Jeremy, lost the third-place game to Ross, and finished the year in <b>fourth</b>. The only unbeaten regular season in twenty-one years and it bought him nothing. He has still never won this league.</p>
+      </div>
+    </div>
+
+    <div class="lore">
+      <div class="lore-item">
+        <span class="lore-k">The most dominant season ever played</span>
+        <p><b>Rough Riders, 2007.</b> Went <b class="mono">11-1-1</b> and scored <b class="mono">138.4</b> a game in a league that averaged 98.6. That is <b>40% above league average</b>, and nobody in the other twenty seasons has cleared 33%. Two of the three biggest single weeks in league history relative to their era belong to this team: 185 in Week 9 and 180 in Week 3. They took the 1-seed, beat Chris in the semifinal, and beat Jeremy 130-116 in the final. Mitch Moore will forever sit in the NJA Hall of Fame.</p>
+      </div>
+      <div class="lore-item">
+        <span class="lore-k">The original Cinderella</span>
+        <p><b>Cyclones, 2006.</b> Finished 8-4, drew the <b>6-seed</b>, the lowest in the field, and then beat the 3, the 2 and the 4 on the way to the title. Only one other 6-seed has ever won this league. His name was <b>Chris Huston</b>, and we will forever remember it, because it is engraved on the trophy.</p>
+      </div>
+      <div class="lore-item">
+        <span class="lore-k">Jeremy's first two heartbreaks</span>
+        <p>Jeremy lost the final in <b>2006</b> and again in <b>2007</b>, back to back, before losing two more in 2014 and 2022. <b>Four finals, no rings.</b> The 2006 run is the cruel one: he knocked out the 11-1 top seed to get there and then scored 64 in the final.</p>
+      </div>
+      <div class="lore-item">
+        <span class="lore-k">The lost years</span>
+        <p><b>This league is older than the record book.</b> Ross started it in <b>2003</b> under a different name, and those two seasons are gone. No standings, no scores, no champion. Everything on this page begins in 2005 because that is where the paper trail begins, not where the league does. Yahoo also stopped attaching manager names to teams before 2009, so 2005 through 2008 sit outside every career number here. None of it is outside the lore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The trade desk</p>
+    <h2>103 trades, 20 of them vetoed</h2>
+    <p class="lede">As we all know, during Ross's tumultuous teen years he vetoed trades like a mad man. Between 2006 and 2013 the league killed <b>34%</b> of every trade put on the table, including five of nine in 2007. The last veto in league history was 2013. Trading has dried up anyway: <b class="mono">7.9</b> trades a season through 2013, <b class="mono">2.7</b> a season since. Nobody has had a deal voted down in twelve years and nobody is making deals either.</p>
+    <div class="two">
+      <div class="panel">
+        <p class="cap">Trades per season &middot; completed vs vetoed</p>
+        <p class="cmlabel">Commissioner</p>
+        <div class="commish">
+          <div class="cm" style="grid-column:1 / span 14"><span class="cm-n">Ross</span><span class="cm-y">2005-18</span></div>
+          <div class="cm" style="grid-column:15 / span 4"><span class="cm-n">Jeremy</span><span class="cm-y">19-22</span></div>
+          <div class="cm" style="grid-column:19 / span 3"><span class="cm-n">Chris</span><span class="cm-y">23-now</span></div>
+        </div>
+        <div class="tstrip"><div class="ty" title="2005: 12 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:86%"></div></div>
+  <span class="ty-y">05</span></div><div class="ty" title="2006: 14 trades, 5 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:36%"></div>
+  <div class="ty-c" style="height:64%"></div></div>
+  <span class="ty-y">06</span></div><div class="ty" title="2007: 9 trades, 5 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:36%"></div>
+  <div class="ty-c" style="height:29%"></div></div>
+  <span class="ty-y">07</span></div><div class="ty" title="2008: 6 trades, 2 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:14%"></div>
+  <div class="ty-c" style="height:29%"></div></div>
+  <span class="ty-y">08</span></div><div class="ty" title="2009: 8 trades, 4 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:29%"></div>
+  <div class="ty-c" style="height:29%"></div></div>
+  <span class="ty-y">09</span></div><div class="ty" title="2010: 3 trades, 1 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:7%"></div>
+  <div class="ty-c" style="height:14%"></div></div>
+  <span class="ty-y">10</span></div><div class="ty" title="2011: 7 trades, 1 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:7%"></div>
+  <div class="ty-c" style="height:43%"></div></div>
+  <span class="ty-y">11</span></div><div class="ty" title="2012: 4 trades, 1 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:7%"></div>
+  <div class="ty-c" style="height:21%"></div></div>
+  <span class="ty-y">12</span></div><div class="ty" title="2013: 8 trades, 1 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:7%"></div>
+  <div class="ty-c" style="height:50%"></div></div>
+  <span class="ty-y">13</span></div><div class="ty" title="2014: 4 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:29%"></div></div>
+  <span class="ty-y">14</span></div><div class="ty" title="2015: 4 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:29%"></div></div>
+  <span class="ty-y">15</span></div><div class="ty" title="2016: 3 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:21%"></div></div>
+  <span class="ty-y">16</span></div><div class="ty" title="2017: 3 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:21%"></div></div>
+  <span class="ty-y">17</span></div><div class="ty" title="2018: 5 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:36%"></div></div>
+  <span class="ty-y">18</span></div><div class="ty" title="2019: 0 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:0%"></div></div>
+  <span class="ty-y">19</span></div><div class="ty" title="2020: 2 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:14%"></div></div>
+  <span class="ty-y">20</span></div><div class="ty" title="2021: 3 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:21%"></div></div>
+  <span class="ty-y">21</span></div><div class="ty" title="2022: 3 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:21%"></div></div>
+  <span class="ty-y">22</span></div><div class="ty" title="2023: 3 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:21%"></div></div>
+  <span class="ty-y">23</span></div><div class="ty" title="2024: 0 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:0%"></div></div>
+  <span class="ty-y">24</span></div><div class="ty" title="2025: 2 trades, 0 vetoed">
+  <div class="ty-bar"><div class="ty-v" style="height:0%"></div>
+  <div class="ty-c" style="height:14%"></div></div>
+  <span class="ty-y">25</span></div></div>
+        <div class="legend"><span><i style="background:var(--turf)"></i>Completed</span><span><i style="background:var(--flag)"></i>Vetoed</span></div>
+      </div>
+      <div class="panel">
+        <p class="cap">Completed trades by manager, 2009-25</p>
+        <div class="recs duo">
+          <div class="rec golden"><span class="k">Most trades</span><div class="big">21</div><p>Chris. Also 847 total roster moves, most in the league by 155.</p></div>
+          <div class="rec flagged"><span class="k">Fewest trades</span><div class="big">0</div><p><b>Austin.</b> Seventeen seasons. Not a single trade. Sean never made one either.</p></div>
+        </div>
+        <p style="font-size:13px;color:var(--ink2);margin:14px 0 0">Jason is second with 14. Jeremy and Nick have each had three proposals voted down, more than anyone else still in the league. <b>2019 and 2024 had no trades at all.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Odds and ends</p>
+    <h2>Things the spreadsheet noticed</h2>
+    <ul class="nuggets">
+      <li><b>Playoff seeding barely matters.</b> Six titles from the 1-seed, six from the 2, and five from the 5. The 3-seed has never won this league once in 21 tries.</li>
+      <li><b>Jordan is Mr. December.</b> A .473 career regular-season manager with an <b>11-3</b> playoff record and four rings. Nobody else is close to that gap.</li>
+      <li><b>Jeremy has the best résumé with nothing to show for it.</b> Eleven playoff berths, <b>four finals</b> in 2006, 2007, 2014 and 2022, three third-place finishes, zero titles, and a 7-16 playoff record since 2009.</li>
+      <li><b>Bo's one ring is getting much heavier around his neck.</b> A .438 career mark, the worst average finish of any 17-year manager (9.4), and a 2011 championship that has to carry all of it.</li>
+      <li><b>The long walks.</b> Streaks run across seasons, and two are ugly. <b>Nick</b> lost <b class="mono">13</b> straight regular-season games from Week 13 of 2021 to Week 11 of 2022. <b>Trevor</b> lost his entire 0-13 season in 2010, sat out 2011, then lost the first two of 2012, which is 15 consecutive games he actually showed up for.</li>
+      <li><b>Nobody is safe.</b> Jack has two titles <em>and</em> three last-place finishes. Jason has four last-place finishes and a perfect season.</li>
+      <li><b>The unluckiest year on record</b> belongs to Nick in 2020. He scored the <b>second-most points in the league</b> and went 5-8, missing a six-team playoff entirely. Bo did the same thing in 2013, second in scoring at 6-7. Nobody has ever finished first in points and missed.</li>
+      <li><b>Ties still happen.</b> Thirteen games in 21 years have ended level, including a 118.90-118.90 between Sean and Matt in 2016.</li>
+      <li><b>Chris is the league's constant.</b> Thirteen playoff berths in 17 years, more wins than anyone, four rings across 2005, 2008, 2017 and 2021, and four runner-up finishes, also more than anyone.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Sources &amp; caveats.</b> Every figure is scraped from the league's own Yahoo pages, 2005-2025. The 2003 and 2004 seasons, run by Ross under a different league name, have no surviving records and are not counted anywhere here. Two matchups have been voided as bye weeks that Yahoo could not schedule as byes. Those are every 0.00 result in the archive, and they count as neither a win nor a loss, with their points excluded. That means 2006's "dan dewitts team" was the empty bye slot rather than a real roster, and 2006 is treated as a 17-team season; thirteen 2006 records here are one win lighter than Yahoo shows. Everything else reconciles to Yahoo exactly. Manager names only exist from 2009 onward, so career and head-to-head figures cover 2009 to 2025. Records from 2005 to 2008 are attributed to team names only, and will be folded in once the early managers are identified. The exceptions are Chris, whose 2005 and 2008 championships are credited to him throughout, and Jeremy, whose 2006 and 2007 final losses are named in the text. Neither is folded into the career records, which still start in 2009. Points-for and points-against in the standings are regular season only; playoff scoring is counted separately. Trade counts include only trades Yahoo logged, and "vetoed" is Yahoo's own label.</p>
+  </div>
+</footer>
+
+</body>
+</html>
