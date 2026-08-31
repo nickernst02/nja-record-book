@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The ultimate fantasy football league record book. Twenty-one seasons of NO JABRONES ALLOWED, 2005-2025.">
-<title>The Jabrones Record Book</title>
+<meta name="description" content="No Jabrones Allowed Hall of Records. Twenty-one seasons of fantasy football, 2005-2025.">
+<title>No Jabrones Allowed &middot; Hall of Records</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
@@ -83,7 +83,12 @@ h1{
   font-size:clamp(40px,8.2vw,86px); margin:16px 0 6px; letter-spacing:-.01em;
 }
 h1 .thin{display:block;color:var(--turf)}
-.sub{font-size:clamp(16px,2.2vw,20px); color:var(--ink2); max-width:60ch; margin:14px 0 0}
+.hallrule{display:flex;align-items:center;gap:16px;margin:14px 0 0;max-width:660px}
+.hallrule::before,.hallrule::after{content:"";height:3px;flex:1 1 20px;min-width:14px;background:var(--gold);opacity:.6;border-radius:2px}
+.hall{font-family:"Alfa Slab One",Georgia,serif;font-weight:400;
+  font-size:clamp(17px,3.4vw,31px);line-height:1;color:var(--gold);
+  text-transform:uppercase;letter-spacing:.055em;white-space:nowrap;flex:none}
+.sub{font-size:clamp(16px,2.2vw,20px); color:var(--ink2); max-width:60ch; margin:20px 0 0}
 .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
 .hs{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:16px 14px;box-shadow:var(--shadow)}
 .hs b{display:block;font-family:"Alfa Slab One",Georgia,serif;font-size:clamp(22px,3.4vw,34px);line-height:1;color:var(--ink)}
@@ -406,6 +411,7 @@ img{max-width:100%}
   <div class="wrap">
     <p class="eyebrow">Est. 2003 &middot; On the record since 2005 &middot; Year 21</p>
     <h1>No Jabrones<span class="thin">Allowed</span></h1>
+    <div class="hallrule"><span class="hall">Hall of Records</span></div>
     <p class="sub"><b>The ultimate fantasy football league record book.</b> Twenty-one seasons, every game, every score, every playoff failure, all on the record. Most of you have kids now. The record book does not care.</p>
     <div class="hero-stats">
       <div class="hs"><b>21</b><span>Seasons</span></div>
