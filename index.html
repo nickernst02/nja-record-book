@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="No Jabrones Allowed Hall of Records. Twenty-one seasons of fantasy football, 2005-2025.">
 <title>No Jabrones Allowed &middot; Hall of Records</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23177E56%22%2F%3E%3Cg%20transform%3D%22rotate%28-32%2016%2016%29%22%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2216%22%20rx%3D%2211%22%20ry%3D%226.8%22%20fill%3D%22%23F2F4EC%22%2F%3E%3Cpath%20d%3D%22M6%2016h20%22%20stroke%3D%22%23177E56%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M12%2013.4v5.2M16%2012.6v6.8M20%2013.4v5.2%22%20stroke%3D%22%23177E56%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23177E56%22%2F%3E%3Cg%20transform%3D%22rotate%28-32%2016%2016%29%22%3E%3Cellipse%20cx%3D%2216%22%20cy%3D%2216%22%20rx%3D%2211%22%20ry%3D%226.8%22%20fill%3D%22%23F2F4EC%22%2F%3E%3Cpath%20d%3D%22M6%2016h20%22%20stroke%3D%22%23177E56%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M12%2013.4v5.2M16%2012.6v6.8M20%2013.4v5.2%22%20stroke%3D%22%23177E56%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
@@ -196,7 +198,9 @@ table.mx td:hover .tip,table.mx td:focus-within .tip{opacity:1}
 .lore-item{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--turf);border-radius:3px;padding:18px 20px;box-shadow:var(--shadow)}
 .lore-hero{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:3px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:22px}
 .lore-hero-num{text-align:center}
-.lore-hero-big{display:block;font-family:"Alfa Slab One",Georgia,serif;font-size:clamp(38px,6vw,58px);line-height:1;color:var(--gold)}
+.lore-hero-big{display:block;font-family:"Alfa Slab One",Georgia,serif;font-size:clamp(34px,5.4vw,54px);line-height:1;color:var(--gold)}
+.lore-hero.green{border-left-color:var(--turf)}
+.lore-hero.green .lore-hero-big{color:var(--turf-ink)}
 .lore-hero-sub{display:block;font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--muted);margin-top:8px}
 .lore-hero-body h3{font-family:Oswald,sans-serif;font-size:20px;font-weight:600;letter-spacing:.01em}
 .lore-hero-body p{margin:6px 0 0;font-size:14.5px;line-height:1.55;color:var(--ink2)}
@@ -957,6 +961,14 @@ img{max-width:100%}
       </div>
     </div>
 
+
+    <div class="lore-hero green">
+      <div class="lore-hero-num"><span class="lore-hero-big">12th</span><span class="lore-hero-sub">of fourteen, in week 10</span></div>
+      <div class="lore-hero-body">
+        <h3>Jack, 2010</h3>
+        <p>He lost four in a row and sat <b>12th out of 14</b> at 4-6 with three games left. Then he never lost again. Three straight wins to sneak in as the 5-seed, then the 4-seed by 30, then the <b>1-seed by 40</b> in the semifinal, then the final <span class="mono">130-89</span>. Six consecutive wins from the brink of nothing to the trophy. No champion in league history has ever been buried deeper.</p>
+      </div>
+    </div>
     <div class="lore">
       <div class="lore-item">
         <span class="lore-k">The most dominant season ever played</span>
@@ -971,8 +983,8 @@ img{max-width:100%}
         <p>Jeremy lost the final in <b>2006</b> and again in <b>2007</b>, back to back, before losing two more in 2014 and 2022. <b>Four finals, no rings.</b> The 2006 run is the cruel one: he knocked out the 11-1 top seed to get there and then scored 64 in the final.</p>
       </div>
       <div class="lore-item">
-        <span class="lore-k">The lost years</span>
-        <p><b>This league is older than the record book.</b> Ross started it in <b>2003</b> under a different name, and those two seasons are gone. No standings, no scores, no champion. Everything on this page begins in 2005 because that is where the paper trail begins, not where the league does. Yahoo also stopped attaching manager names to teams before 2009, so 2005 through 2008 sit outside every career number here. None of it is outside the lore.</p>
+        <span class="lore-k">The unluckiest year on record</span>
+        <p><b>Nick, 2020.</b> He scored the <b>second-most points in the league</b> and went <b class="mono">5-8</b>, missing a six-team playoff entirely. Bo did the same thing in 2013, second in scoring at 6-7. Nobody in 21 years has ever finished first in points and missed the playoffs, but these two came as close to that injustice as the format allows.</p>
       </div>
     </div>
   </div>
@@ -1083,7 +1095,6 @@ img{max-width:100%}
       <li><b>Bo's one ring is getting much heavier around his neck.</b> A .438 career mark, the worst average finish of any 17-year manager (9.4), and a 2011 championship that has to carry all of it.</li>
       <li><b>The long walks.</b> Streaks run across seasons, and two are ugly. <b>Nick</b> lost <b class="mono">13</b> straight regular-season games from Week 13 of 2021 to Week 11 of 2022. <b>Trevor</b> lost his entire 0-13 season in 2010, sat out 2011, then lost the first two of 2012, which is 15 consecutive games he actually showed up for.</li>
       <li><b>Nobody is safe.</b> Jack has two titles <em>and</em> three last-place finishes. Jason has four last-place finishes and a perfect season.</li>
-      <li><b>The unluckiest year on record</b> belongs to Nick in 2020. He scored the <b>second-most points in the league</b> and went 5-8, missing a six-team playoff entirely. Bo did the same thing in 2013, second in scoring at 6-7. Nobody has ever finished first in points and missed.</li>
       <li><b>Ties still happen.</b> Thirteen games in 21 years have ended level, including a 118.90-118.90 between Sean and Matt in 2016.</li>
       <li><b>Chris is the league's constant.</b> Thirteen playoff berths in 17 years, more wins than anyone, four rings across 2005, 2008, 2017 and 2021, and four runner-up finishes, also more than anyone.</li>
     </ul>
@@ -1143,7 +1154,7 @@ img{max-width:100%}
   show(location.hash.slice(1)||'roster',false);
 
   // ---- data tab ----
-  var MODE='standings', SORT={col:0,dir:1}, built=false;
+  var MODE='standings', SORT={col:0,dir:-1}, built=false;
   var SPEC={
     standings:{
       cols:['Season','Manager','Team','W','L','T','Win %','Points for','Points against','Finish','Result'],
@@ -1238,11 +1249,11 @@ img{max-width:100%}
     clearTimeout(qt); qt=setTimeout(render,140);
   });
   document.getElementById('d-standings').addEventListener('click',function(){
-    MODE='standings'; SORT={col:0,dir:1};
+    MODE='standings'; SORT={col:0,dir:-1};
     this.classList.add('on'); document.getElementById('d-games').classList.remove('on'); render();
   });
   document.getElementById('d-games').addEventListener('click',function(){
-    MODE='games'; SORT={col:0,dir:1};
+    MODE='games'; SORT={col:0,dir:-1};
     this.classList.add('on'); document.getElementById('d-standings').classList.remove('on'); render();
   });
 })();
