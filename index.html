@@ -36,29 +36,29 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --ground:#10150E; --panel:#181F16; --panel2:#212A1E;
-    --ink:#EDF0E6; --ink2:#C3CBBA; --muted:#8A9481;
-    --line:#2C3628; --line2:#3C4836;
-    --turf:#189062; --turf-ink:#5FD3A4;
-    --flag:#D9563F;
-    --gold:#E0A61A; --gold-bright:#F0BC3E;
-    --shadow:0 1px 0 rgba(0,0,0,.4), 0 14px 30px -22px #000;
-    --w1:#1E4932; --w2:#1C6545; --w3:#19845A;
-    --l1:#583728; --l2:#8C4431; --l3:#C3513B;
-    --cell-ink:#EDF0E6;
+    --ground:#0B0F09; --panel:#171E15; --panel2:#212A1E;
+    --ink:#F0F3E9; --ink2:#C9D1C0; --muted:#98A28E;
+    --line:#36432F; --line2:#4B5A43;
+    --turf:#1C9B6C; --turf-ink:#6FDCAE;
+    --flag:#DD5F45;
+    --gold:#E5AE24; --gold-bright:#F3C548;
+    --shadow:0 1px 0 rgba(0,0,0,.55), 0 18px 36px -26px #000;
+    --w1:#204E36; --w2:#1D6B49; --w3:#188C5F;
+    --l1:#5D3A2A; --l2:#8F4733; --l3:#C6553D;
+    --cell-ink:#F0F3E9;
   }
 }
 :root[data-theme="dark"]{
-  --ground:#10150E; --panel:#181F16; --panel2:#212A1E;
-  --ink:#EDF0E6; --ink2:#C3CBBA; --muted:#8A9481;
-  --line:#2C3628; --line2:#3C4836;
-  --turf:#189062; --turf-ink:#5FD3A4;
-  --flag:#D9563F;
-  --gold:#E0A61A; --gold-bright:#F0BC3E;
-  --shadow:0 1px 0 rgba(0,0,0,.4), 0 14px 30px -22px #000;
-  --w1:#1E4932; --w2:#1C6545; --w3:#19845A;
-  --l1:#583728; --l2:#8C4431; --l3:#C3513B;
-  --cell-ink:#EDF0E6;
+  --ground:#0B0F09; --panel:#171E15; --panel2:#212A1E;
+  --ink:#F0F3E9; --ink2:#C9D1C0; --muted:#98A28E;
+  --line:#36432F; --line2:#4B5A43;
+  --turf:#1C9B6C; --turf-ink:#6FDCAE;
+  --flag:#DD5F45;
+  --gold:#E5AE24; --gold-bright:#F3C548;
+  --shadow:0 1px 0 rgba(0,0,0,.55), 0 18px 36px -26px #000;
+  --w1:#204E36; --w2:#1D6B49; --w3:#188C5F;
+  --l1:#5D3A2A; --l2:#8F4733; --l3:#C6553D;
+  --cell-ink:#F0F3E9;
 }
 
 *{box-sizing:border-box}
@@ -138,6 +138,8 @@ h2{
 
 /* ---------- bars ---------- */
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:22px;box-shadow:var(--shadow)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tabs{background:#131A11}}
+:root[data-theme="dark"] .tabs{background:#131A11}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .bar-row{display:grid;grid-template-columns:74px 1fr 42px 56px;gap:10px;align-items:center;padding:5px 0}
 .tr-row{display:grid;grid-template-columns:74px 1fr auto;gap:10px;align-items:center;padding:5px 0}
@@ -462,8 +464,8 @@ img{max-width:100%}
 <section id="roster" class="pane on">
   <div class="wrap">
     <p class="eyebrow">The current roster</p>
-    <h2><span class="ball"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10.5" ry="6.5" transform="rotate(-30 12 12)" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7.6" y1="16.4" x2="16.4" y2="7.6" stroke="currentColor" stroke-width="1.6"/><line x1="10.4" y1="12.4" x2="12.4" y2="10.4" stroke="currentColor" stroke-width="1.6"/><line x1="11.9" y1="13.9" x2="13.9" y2="11.9" stroke="currentColor" stroke-width="1.6"/></svg></span>Fourteen men, one group chat</h2>
-    <p class="lede">Everybody currently in the league, ranked by career regular-season win percentage. Records cover 2009-2025, the years Yahoo attaches a manager name to a team.</p>
+    <h2><span class="ball"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10.5" ry="6.5" transform="rotate(-30 12 12)" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7.6" y1="16.4" x2="16.4" y2="7.6" stroke="currentColor" stroke-width="1.6"/><line x1="10.4" y1="12.4" x2="12.4" y2="10.4" stroke="currentColor" stroke-width="1.6"/><line x1="11.9" y1="13.9" x2="13.9" y2="11.9" stroke="currentColor" stroke-width="1.6"/></svg></span>14 men, mostly Jabrones</h2>
+    <p class="lede">Ranking everyone in the league by all time winning percentage. Records cover 2009-2025.</p>
     <div class="yardstrip"></div>
     <div class="cards">
       <article class="card">
@@ -686,7 +688,6 @@ img{max-width:100%}
     <p class="eyebrow">The only number that counts</p>
     <h2><span class="ball"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="10.5" ry="6.5" transform="rotate(-30 12 12)" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="7.6" y1="16.4" x2="16.4" y2="7.6" stroke="currentColor" stroke-width="1.6"/><line x1="10.4" y1="12.4" x2="12.4" y2="10.4" stroke="currentColor" stroke-width="1.6"/><line x1="11.9" y1="13.9" x2="13.9" y2="11.9" stroke="currentColor" stroke-width="1.6"/></svg></span>The Jabrone board</h2>
     <p class="lede"><b>New league bylaw: no championship makes you a JABRONE.</b> No grace period, no credit for showing up, no partial marks for a nice regular season. One trophy per title, ranked from most to fewest. Six of you are down there at the bottom.</p>
-    <svg class="goalpost" viewBox="0 0 120 52" aria-hidden="true"><path d="M18 50h84" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M60 50V30" stroke="currentColor" stroke-width="3" fill="none"/><path d="M22 30h76" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M22 30V4M98 30V4" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
     <div class="jb"><div class="jb-row">
       <span class="jb-name">Nick</span>
       <div class="jb-track">
@@ -984,7 +985,6 @@ img{max-width:100%}
       <p class="lore-eyebrow">Jack, 2010</p>
       <h3 class="lore-line">12th place <span class="arw">&rarr;</span> Championship</h3>
       <p>In week 11 at 4-6, Jack was sitting in 12th place after losing 4 straight weeks. With only 3 games left in the regular season and his hopes dwindling, he never lost again. Three straight regular season wins to sneak in as the 5-seed, then he beat the 4-seed by 30, then the 1-seed by 40 in the semifinal, then the final <span class="mono">130-89</span>. Six consecutive wins from the brink of nothing to the trophy. No champion in league history has ever come back from the grave in better fashion.</p>
-    </div>
     </div>
     <div class="lore">
       <div class="lore-item">
